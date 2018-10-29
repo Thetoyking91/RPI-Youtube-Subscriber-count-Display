@@ -2,22 +2,28 @@
 # Alejandro De los Santos
 # EMail: alejandrodlsp@hotmail.es
 # Twitter: @alejandrodlsp
+# PROJECT: https://alejandropsld.wixsite.com/portfolio/rpi-live-youtube-subscribers
 #-------------------------------
 
 # Default 4 Digit Display GPIO Layout:
-# D1:2, D2:3, D3:4, D4:14,
-# A:15, B:17, C:18, D:27, E:22, F:23, G:24, DP:10
-# Pin layout: https://i.stack.imgur.com/vJzZu.png
+#   D1:2, D2:3, D3:4, D4:14,
+#   A:15, B:17, C:18, D:27, E:22, F:23, G:24, DP:10
+#   Pin layout: https://i.stack.imgur.com/vJzZu.png
 
 segments =  (15,17,18,27,22,23,24,10) # Define GPIO ports for the 7seg pins
 digits = (2,3,4,14) # Define GPIO ports for the digit 0-3 pins
-
+##
 print_views = false # Set to true to print total view count instead of subscriber count
-keyboard_interrupt = true; # Interrupt program with keyboard
-
+keyboard_interrupt = true; # Interrupt program with keyboard press
+##
 refreshRate = 10  #Subscribers refresh rate in seconds
-url = "https://www.googleapis.com/youtube/v3/channels?key={API KEY}&forUsername={YOUTUBE USERNAME}&part=statistics"   # replace {API key} with your google dev API key and {YOUTUBE USERNAME} with the channel username
+##
+API_KEY = "KEY"  # Replace with your google dev API key with access to youtube's statistics
+YOUTUBE_USERNAME = "USERNAME" # Replace with the channel username
+##
+url = "https://www.googleapis.com/youtube/v3/channels?key=" + API_KEY + "&forUsername=" + YOUTUBE_USERNAME + "&part=statistics"   
 
+# - IMPORTS - 
 import RPi.GPIO as GPIO
 import time
 import sys
@@ -28,13 +34,14 @@ import urllib
 import string
 from decimal import Decimal
 
-GPIO.setmode(GPIO.BCM)
 
-for segment in segments:
+GPIO.setmode(GPIO.BCM) # Set GPIO mode
+
+for segment in segments:    # Initialize all segment pins
     GPIO.setup(segment, GPIO.OUT)
     GPIO.output(segment, 0)
 
-for digit in digits:
+for digit in digits:        # Initialize all digit pins
     GPIO.setup(digit, GPIO.OUT)
     GPIO.output(digit, 1)
 

@@ -1,7 +1,7 @@
 # RPI-Subscriber-count-Display
 # RaspberryPi-Live-YouTube-subscriber-display
-# Project site: https://alejandropsld.wixsite.com/portfolio/rpi-live-youtube-subscribers
+# Website: alejandrodlsp.com
 # Email: alejandrodlsp@hotmail.es
 # Twitter: @alejandrodlsp
 
-Uses a 4 digit 7 segment display to display the current number of subscribers or total views of a YouTube channel using a Raspberry PI.
+This short python script, fetches the subscriber count and total views of a YouTube channel. It is designed to use in a Raspberry Pi (Any model) connected to a 4 segment, 7 digit display, but it can easily be re purposed
